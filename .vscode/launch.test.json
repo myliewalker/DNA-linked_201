@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "DNA-Linked-201Fall18",
+                "projectName": "DNA-Linked-201Fall18",
+                "workingDirectory": "/Users/myliewalker/Desktop/dna-linked-fall18",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "DNA-Linked-201Fall18",
+                "projectName": "DNA-Linked-201Fall18",
+                "workingDirectory": "/Users/myliewalker/Desktop/dna-linked-fall18",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

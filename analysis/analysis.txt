@@ -1,0 +1,9 @@
+Your Name here
+Your NetID here
+Your Partner's name here (or erase)
+Your Partner's NetID here (or erase)
+
+Questions here will come from the assignment
+writeup. Be sure to copy paste questions and 
+your explanations before you push to GitHub and
+do that before uploading to Gradescope

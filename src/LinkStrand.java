@@ -73,6 +73,8 @@ public class LinkStrand implements IDnaStrand {
 	@Override
 	public char charAt(int index) {
 		while (myIndex != index && myCurrent != null) {
+			myIndex++;
+			myLocalIndex++;
 			if (index > mySize) {
 				return ' ';
 			}
@@ -86,8 +88,6 @@ public class LinkStrand implements IDnaStrand {
 				if (myCurrent.next == null) return ' ';
 				myCurrent.info = myCurrent.next.info;
 			}
-			myIndex++;
-			myLocalIndex++;
 		}
 		return myCurrent.info.charAt(myLocalIndex);
 	}

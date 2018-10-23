@@ -35,6 +35,9 @@ public class LinkStrand implements IDnaStrand {
 		myLast = myFirst;
 		mySize = source.length();
 		myAppends = 0;
+		myIndex = 0;
+		myLocalIndex = 0;
+		myCurrent = myFirst;
 	}
 	@Override
 	public IDnaStrand getInstance(String source) {

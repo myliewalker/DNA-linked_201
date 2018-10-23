@@ -92,10 +92,10 @@ public class LinkStrand implements IDnaStrand {
 			if (myCurrent == null) {
 				myCurrent = myFirst;
 			}
-			if (index > mySize) {
+			if (index >= mySize) {
 				return ' ';
 			}
-			if (index < myIndex) {
+			if (index <= myIndex) {
 				myIndex = 0;
 				myLocalIndex = 0;
 				myCurrent = myFirst;
@@ -108,7 +108,6 @@ public class LinkStrand implements IDnaStrand {
 			myLocalIndex++;
 		}
 		return myCurrent.info.charAt(myLocalIndex);
-		//check interaction between myLocalIndex and index
 	}
 
 //	@Override

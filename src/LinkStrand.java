@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-
 public class LinkStrand implements IDnaStrand {
 	
 	private Node myFirst;
@@ -26,12 +25,10 @@ public class LinkStrand implements IDnaStrand {
 	public LinkStrand(String s) {
 		initialize(s);
 	}
-
 	@Override
 	public long size() {
 		return mySize;
 	}
-
 	@Override
 	public void initialize(String source) {
 		myFirst = new Node(source);
@@ -39,12 +36,10 @@ public class LinkStrand implements IDnaStrand {
 		mySize = source.length();
 		myAppends = 0;
 	}
-
 	@Override
 	public IDnaStrand getInstance(String source) {
 		return new LinkStrand(source);
 	}
-
 	@Override
 	public IDnaStrand append(String dna) {
 		myLast.next = new Node(dna);
@@ -53,7 +48,6 @@ public class LinkStrand implements IDnaStrand {
 		myAppends++;
 		return this;
 	}
-
 	@Override
 	public IDnaStrand reverse() {
 		StringBuilder copy = new StringBuilder();
@@ -68,12 +62,10 @@ public class LinkStrand implements IDnaStrand {
 		LinkStrand backwards = new LinkStrand(copy.toString());
 		return backwards;
 	}
-
 	@Override
 	public int getAppendCount() {
 		return myAppends;
 	}
-
 	@Override
 	public char charAt(int index) {
 		while (myIndex != index) {
@@ -106,5 +98,4 @@ public class LinkStrand implements IDnaStrand {
 		}
 		return str.toString();
 	}
-
 }

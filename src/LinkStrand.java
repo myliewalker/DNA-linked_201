@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+
 public class LinkStrand implements IDnaStrand {
 	
 	private Node myFirst;
@@ -68,7 +68,7 @@ public class LinkStrand implements IDnaStrand {
 	}
 	@Override
 	public char charAt(int index) {
-		while (myIndex != index) {
+		while (myIndex != index && myCurrent != null) {
 			if (index > mySize) {
 				return ' ';
 			}

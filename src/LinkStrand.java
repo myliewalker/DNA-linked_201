@@ -71,14 +71,14 @@ public class LinkStrand implements IDnaStrand {
 	}
 	@Override
 	public char charAt(int index) {
-		while (myIndex != index && myCurrent != null) {
-			if (index > mySize) {
+		while (myIndex != index) {
+			if (index > mySize || myCurrent == null) {
 				return ' ';
 			}
 			if (index < myIndex) {
+				myCurrent = myFirst;
 				myIndex = 0;
 				myLocalIndex = 0;
-				myCurrent = myFirst;
 			}
 			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;

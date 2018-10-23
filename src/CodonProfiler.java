@@ -23,17 +23,14 @@ public class CodonProfiler {
 		Iterator<Character> iter = strand.iterator();
 		while (iter.hasNext()) {
 			char a = iter.next();
-			char b = 'z';           // not part of any real codon
-			char c = 'z';
-			if (iter.hasNext()) {
-				b = iter.next();
+			if (! iter.hasNext()) {
+				break;
 			}
-			if (iter.hasNext()) {
-				c = iter.next();
+			char b = iter.next();
+			if (! iter.hasNext()) {
+				break;
 			}
-			if (c == 'z') {
-				return ret;
-			}
+			char c = iter.next();
 			String cod = ""+a+b+c;
 			if (all.contains(cod)) {
 				if (! map.containsKey(cod)) {

@@ -79,13 +79,14 @@ public class LinkStrand implements IDnaStrand {
 			}
 			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;
+				if (myCurrent.next == null) break;
 				myCurrent.info = myCurrent.next.info;
 			}
 			myIndex++;
 			myLocalIndex++;
 		}
-		String r = myCurrent.info.substring(myLocalIndex, myLocalIndex+1);
-		return r.charAt(0);
+//		String r = myCurrent.info.substring(myLocalIndex, myLocalIndex+1);
+		return myCurrent.info.charAt(myLocalIndex);
 	}
 	
 	public String toString() {

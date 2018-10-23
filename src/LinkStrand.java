@@ -89,23 +89,25 @@ public class LinkStrand implements IDnaStrand {
 			}
 		}
 		return myCurrent.info.charAt(myLocalIndex);
+//		while (myIndex != index && myCurrent != null) {
+//			if (index > mySize) {
+//				return ' ';
+//			}
+//			if (index < myIndex) {
+//				myIndex = 0;
+//				myLocalIndex = 0;
+//				myCurrent = myFirst;
+//			}
+//			if (myLocalIndex >= myCurrent.info.length()) {
+//				myLocalIndex = 0;
+//				if (myCurrent.next == null) return ' ';
+//				myCurrent.info = myCurrent.next.info;
+//			}
+//			myIndex++;
+//			myLocalIndex++;
+//		}
+//		return myCurrent.info.charAt(myLocalIndex);
 	}
-	
-//	public int charAt(int index) {
-//		int count = 0;
-//				int dex = 0;
-//				Node list = myFirst;
-//				while (count != index) {
-//					count++;
-//					dex++;
-//					if (dex >= list.info.length()) {
-//						dex = 0;
-//						list = list.next;
-//					}
-//				}
-//		           return list.info.charAt(dex);
-//		        }
-
 	
 	public String toString() {
 		StringBuilder str = new StringBuilder();

@@ -88,9 +88,7 @@ public class LinkStrand implements IDnaStrand {
 
 
 	public char charAt(int index) {
-		while (myIndex != index) {
-			myIndex++;
-			myLocalIndex++;
+		while (myIndex != index) {;
 			if (myCurrent == null) {
 				myCurrent = myFirst;
 			}
@@ -104,11 +102,13 @@ public class LinkStrand implements IDnaStrand {
 			}
 			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;
-				if (myCurrent.next == null) return ' ';
 				myCurrent.info = myCurrent.next.info;
 			}
+			myIndex++;
+			myLocalIndex++;
 		}
 		return myCurrent.info.charAt(myLocalIndex);
+		//check interaction between myLocalIndex and index
 	}
 
 //	@Override

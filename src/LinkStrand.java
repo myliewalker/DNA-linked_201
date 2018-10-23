@@ -107,7 +107,7 @@ public class LinkStrand implements IDnaStrand {
 			myIndex++;
 			myLocalIndex++;
 		}
-		return myCurrent.info.charAt(myLocalIndex);
+		return myCurrent.info.charAt(myLocalIndex-1);
 	}
 
 //	@Override

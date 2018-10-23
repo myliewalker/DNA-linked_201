@@ -68,12 +68,11 @@ public class LinkStrand implements IDnaStrand {
 	@Override
 	public int getAppendCount() {
 		return myAppends;
-	}
+	}	
+
 	@Override
 	public char charAt(int index) {
 		while (myIndex != index && myCurrent != null) {
-			myIndex++;
-			myLocalIndex++;
 			if (index > mySize) {
 				return ' ';
 			}
@@ -84,12 +83,20 @@ public class LinkStrand implements IDnaStrand {
 			}
 			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;
-//				if (myCurrent.next == null) return ' ';
+				if (myCurrent.next == null) return ' ';
 				myCurrent.info = myCurrent.next.info;
 			}
+			myIndex++;
+			myLocalIndex++;
 		}
 		return myCurrent.info.charAt(myLocalIndex);
+	}
+
+//	@Override
+//	public char charAt(int index) {
 //		while (myIndex != index && myCurrent != null) {
+//			myIndex++;
+//			myLocalIndex++;
 //			if (index > mySize) {
 //				return ' ';
 //			}
@@ -100,15 +107,13 @@ public class LinkStrand implements IDnaStrand {
 //			}
 //			if (myLocalIndex >= myCurrent.info.length()) {
 //				myLocalIndex = 0;
-//				if (myCurrent.next == null) return ' ';
+////				if (myCurrent.next == null) return ' ';
 //				myCurrent.info = myCurrent.next.info;
 //			}
-//			myIndex++;
-//			myLocalIndex++;
 //		}
 //		return myCurrent.info.charAt(myLocalIndex);
-	}
-	
+//	}
+//	
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		Node n = myFirst;

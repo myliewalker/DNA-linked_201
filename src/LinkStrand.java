@@ -107,12 +107,7 @@ public class LinkStrand implements IDnaStrand {
 			myIndex++;
 			myLocalIndex++;
 		}
-		return myCurrent.info.charAt(myLocalIndex);
-	}
-
-private Exception IndexOutOfBoundsException(String string) {
-		// TODO Auto-generated method stub
-		return null;
+		return myCurrent.info.charAt(myLocalIndex+1);
 	}
 
 //	@Override

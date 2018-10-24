@@ -1,4 +1,4 @@
-import java.util.IndexOutOfBoundsException;
+
 public class LinkStrand implements IDnaStrand {
 	
 	private Node myFirst;

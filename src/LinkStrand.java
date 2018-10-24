@@ -61,7 +61,6 @@ public class LinkStrand implements IDnaStrand {
 			copy.append(temp.info);
 		}
 		copy.reverse();
-		//make sure that this reverses the node info too
 		LinkStrand backwards = new LinkStrand(copy.toString());
 		return backwards;
 	}
@@ -88,25 +87,6 @@ public class LinkStrand implements IDnaStrand {
 		}
 		return myCurrent.info.charAt(myLocalIndex);
 	}
-	
-//	@Override
-//	public char charAt(int index) {
-//		if (index < 0 || index >= mySize) throw new IndexOutOfBoundsException();
-//		if (myIndex > index) {
-//			myIndex = 0;
-//			myLocalIndex = 0;
-//			myCurrent = myFirst;
-//		}
-//		while (myIndex != index) {
-//			myIndex++;
-//			myLocalIndex++;
-//			if (myLocalIndex >= myCurrent.info.length()) {
-//				myLocalIndex = 0;
-//				myCurrent.info = myCurrent.next.info;
-//			}
-//		}
-//		return myCurrent.info.charAt(myLocalIndex);
-//	}
 
 	public String toString() {
 		StringBuilder str = new StringBuilder();

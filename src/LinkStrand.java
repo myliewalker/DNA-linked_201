@@ -1,3 +1,4 @@
+//import java.util.IndexOutOfBoundsException;
 
 public class LinkStrand implements IDnaStrand {
 	
@@ -69,54 +70,55 @@ public class LinkStrand implements IDnaStrand {
 	public int getAppendCount() {
 		return myAppends;
 	}	
-
+	
 	@Override
 	public char charAt(int index) {
+		if (index < 0) return ' ';
+		if (myIndex > index) {
+			myIndex = 0;
+			myLocalIndex = 0;
+			myCurrent = myFirst;
+		}
 		while (myIndex != index) {
 			myIndex++;
 			myLocalIndex++;
-			if (myCurrent == null) {
-				return ' ';
-			}
-			if (index >= mySize || index < 0) {
-				return ' ';
-			}
-			if (index < myIndex) {
-				myIndex = 0;
-				myLocalIndex = 0;
-				myCurrent = myFirst;
-			}
 			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;
-//				if (myCurrent.next == null) return ' ';
 				myCurrent.info = myCurrent.next.info;
+			}
+			if (index >= mySize) {
+				return ' ';
+			}
+			if (myCurrent == null) {
+				return ' ';
 			}
 		}
 		return myCurrent.info.charAt(myLocalIndex);
 	}
 
-
 //	@Override
 //	public char charAt(int index) {
 //		while (myIndex != index) {
+//			myIndex++;
+//			myLocalIndex++;
 //			if (myCurrent == null) {
-//				myCurrent = myFirst;
-//			}
-//			if (index >= mySize || index < 0) {
 //				return ' ';
-////				throw new IndexOutOfBoundsException();
 //			}
-//			if (index <= myIndex) {
+//			if (index < 0) {
+//				return ' ';
+//			}
+//			if (index >= mySize) {
+//				return ' ';
+//			}
+//			if (index < myIndex) {
 //				myIndex = 0;
 //				myLocalIndex = 0;
 //				myCurrent = myFirst;
 //			}
-//			if (myLocalIndex >= myCurrent.info.length()-1) {
+//			if (myLocalIndex >= myCurrent.info.length()) {
 //				myLocalIndex = 0;
 //				myCurrent.info = myCurrent.next.info;
 //			}
-//			myIndex++;
-//			myLocalIndex++;
 //		}
 //		return myCurrent.info.charAt(myLocalIndex);
 //	}

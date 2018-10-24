@@ -1,5 +1,4 @@
-//import java.util.IndexOutOfBoundsException;
-
+import java.lang.IndexOutOfBoundsException;
 public class LinkStrand implements IDnaStrand {
 	
 	private Node myFirst;
@@ -73,7 +72,7 @@ public class LinkStrand implements IDnaStrand {
 	
 	@Override
 	public char charAt(int index) {
-		if (index < 0) return ' ';
+		if (index < 0) throw new IndexOutOfBoundsException();
 		if (myIndex > index) {
 			myIndex = 0;
 			myLocalIndex = 0;
@@ -95,33 +94,6 @@ public class LinkStrand implements IDnaStrand {
 		}
 		return myCurrent.info.charAt(myLocalIndex);
 	}
-
-//	@Override
-//	public char charAt(int index) {
-//		while (myIndex != index) {
-//			myIndex++;
-//			myLocalIndex++;
-//			if (myCurrent == null) {
-//				return ' ';
-//			}
-//			if (index < 0) {
-//				return ' ';
-//			}
-//			if (index >= mySize) {
-//				return ' ';
-//			}
-//			if (index < myIndex) {
-//				myIndex = 0;
-//				myLocalIndex = 0;
-//				myCurrent = myFirst;
-//			}
-//			if (myLocalIndex >= myCurrent.info.length()) {
-//				myLocalIndex = 0;
-//				myCurrent.info = myCurrent.next.info;
-//			}
-//		}
-//		return myCurrent.info.charAt(myLocalIndex);
-//	}
 
 	public String toString() {
 		StringBuilder str = new StringBuilder();

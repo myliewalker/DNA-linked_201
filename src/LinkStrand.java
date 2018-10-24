@@ -78,7 +78,7 @@ public class LinkStrand implements IDnaStrand {
 			if (myCurrent == null) {
 				return ' ';
 			}
-			if (index > mySize) {
+			if (index >= mySize || index < 0) {
 				return ' ';
 			}
 			if (index < myIndex) {

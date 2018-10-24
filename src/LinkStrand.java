@@ -80,20 +80,33 @@ public class LinkStrand implements IDnaStrand {
 		}
 		while (myIndex != index) {
 			myIndex++;
-			myLocalIndex++;
+			if (myLocalIndex != 0) myLocalIndex++;
 			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;
 				myCurrent.info = myCurrent.next.info;
 			}
-			if (myIndex >= mySize) {
-				return ' ';
-			}
-//			if (myCurrent == null) {
-//				return ' ';
-//			}
 		}
 		return myCurrent.info.charAt(myLocalIndex);
 	}
+	
+//	@Override
+//	public char charAt(int index) {
+//		if (index < 0 || index >= mySize) throw new IndexOutOfBoundsException();
+//		if (myIndex > index) {
+//			myIndex = 0;
+//			myLocalIndex = 0;
+//			myCurrent = myFirst;
+//		}
+//		while (myIndex != index) {
+//			myIndex++;
+//			myLocalIndex++;
+//			if (myLocalIndex >= myCurrent.info.length()) {
+//				myLocalIndex = 0;
+//				myCurrent.info = myCurrent.next.info;
+//			}
+//		}
+//		return myCurrent.info.charAt(myLocalIndex);
+//	}
 
 	public String toString() {
 		StringBuilder str = new StringBuilder();

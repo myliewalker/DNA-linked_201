@@ -85,6 +85,9 @@ public class LinkStrand implements IDnaStrand {
 				myLocalIndex = 0;
 				myCurrent.info = myCurrent.next.info;
 			}
+			if (myIndex >= mySize) {
+				return ' ';
+			}
 //			if (myCurrent == null) {
 //				return ' ';
 //			}

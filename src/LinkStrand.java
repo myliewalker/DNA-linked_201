@@ -72,28 +72,54 @@ public class LinkStrand implements IDnaStrand {
 
 	@Override
 	public char charAt(int index) {
-		while (myIndex != index) {;
-		if (myCurrent == null) {
-				myCurrent = myFirst;
-			}
-			if (index >= mySize || index < 0) {
+		while (myIndex != index) {
+			myIndex++;
+			myLocalIndex++;
+			if (myCurrent == null) {
 				return ' ';
-//				throw new IndexOutOfBoundsException();
 			}
-			if (index <= myIndex) {
+			if (index > mySize) {
+				return ' ';
+			}
+			if (index < myIndex) {
 				myIndex = 0;
 				myLocalIndex = 0;
 				myCurrent = myFirst;
 			}
-			if (myLocalIndex >= myCurrent.info.length()-1) {
+			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;
+//				if (myCurrent.next == null) return ' ';
 				myCurrent.info = myCurrent.next.info;
 			}
-			myIndex++;
-			myLocalIndex++;
 		}
 		return myCurrent.info.charAt(myLocalIndex);
 	}
+
+
+//	@Override
+//	public char charAt(int index) {
+//		while (myIndex != index) {
+//			if (myCurrent == null) {
+//				myCurrent = myFirst;
+//			}
+//			if (index >= mySize || index < 0) {
+//				return ' ';
+////				throw new IndexOutOfBoundsException();
+//			}
+//			if (index <= myIndex) {
+//				myIndex = 0;
+//				myLocalIndex = 0;
+//				myCurrent = myFirst;
+//			}
+//			if (myLocalIndex >= myCurrent.info.length()-1) {
+//				myLocalIndex = 0;
+//				myCurrent.info = myCurrent.next.info;
+//			}
+//			myIndex++;
+//			myLocalIndex++;
+//		}
+//		return myCurrent.info.charAt(myLocalIndex);
+//	}
 
 	public String toString() {
 		StringBuilder str = new StringBuilder();

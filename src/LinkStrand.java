@@ -92,7 +92,7 @@ public class LinkStrand implements IDnaStrand {
 			if (myCurrent == null) {
 				myCurrent = myFirst;
 			}
-			if (index >= mySize) {
+			if (index >= mySize || index < 0) {
 				return ' ';
 			}
 			if (index <= myIndex) {
@@ -107,7 +107,12 @@ public class LinkStrand implements IDnaStrand {
 			myIndex++;
 			myLocalIndex++;
 		}
-		return myCurrent.info.charAt(myLocalIndex-1);
+		return myCurrent.info.charAt(myLocalIndex);
+	}
+
+private Exception IndexOutOfBoundsException(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 //	@Override

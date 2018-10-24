@@ -89,7 +89,9 @@ public class LinkStrand implements IDnaStrand {
 
 	public char charAt(int index) {
 		while (myIndex != index) {;
-			if (myCurrent == null) {
+		myIndex++;
+		myLocalIndex++;
+		if (myCurrent == null) {
 				myCurrent = myFirst;
 			}
 			if (index >= mySize || index < 0) {
@@ -104,34 +106,10 @@ public class LinkStrand implements IDnaStrand {
 				myLocalIndex = 0;
 				myCurrent.info = myCurrent.next.info;
 			}
-			myIndex++;
-			myLocalIndex++;
 		}
-		return myCurrent.info.charAt(myLocalIndex+1);
+		return myCurrent.info.charAt(myLocalIndex);
 	}
 
-//	@Override
-//	public char charAt(int index) {
-//		while (myIndex != index && myCurrent != null) {
-//			myIndex++;
-//			myLocalIndex++;
-//			if (index > mySize) {
-//				return ' ';
-//			}
-//			if (index < myIndex) {
-//				myIndex = 0;
-//				myLocalIndex = 0;
-//				myCurrent = myFirst;
-//			}
-//			if (myLocalIndex >= myCurrent.info.length()) {
-//				myLocalIndex = 0;
-////				if (myCurrent.next == null) return ' ';
-//				myCurrent.info = myCurrent.next.info;
-//			}
-//		}
-//		return myCurrent.info.charAt(myLocalIndex);
-//	}
-//	
 	public String toString() {
 		StringBuilder str = new StringBuilder();
 		Node n = myFirst;

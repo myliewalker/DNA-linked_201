@@ -1,8 +1,8 @@
 import java.lang.IndexOutOfBoundsException;
 
 /**
- * Somewhat efficient implementation of IDnaStrand. \ This
- * implementation uses LinkStrands to represent genomic/DNA data.
+ * Efficient implementation of IDnaStrand. This implementation 
+ * uses LinkStrands to represent genomic/DNA data.
  * 
  * @author Mylie Walker
  * @date October 2018, created
@@ -53,8 +53,11 @@ public class LinkStrand implements IDnaStrand {
 	}
 
 	/**
-	 * Initialize this strand so that it represents the value of source. No
-	 * error checking is performed.
+	 * Initialiize the strand of DNA. Initialize the first node with a new node that 
+	 * links to the beginning of the strand and last node, which represents the end 
+	 * of the strand, with the first node. Initialize size to the length of the strand, 
+	 * initialize the index, current index, and number of appends to zero. Initialize the 
+	 * current node as the first node. No error checking is performed.
 	 * @param source is the source of this enzyme
 	 */
 	@Override
@@ -77,7 +80,7 @@ public class LinkStrand implements IDnaStrand {
 	}
 
 	/**
-	 * Append a strand of dna data to this strand. No error checking is
+	 * Append a strand of dna data to the end of this strand. No error checking is
 	 * done. 
 	 * @param dna is the String appended to this strand
 	 */
@@ -91,7 +94,7 @@ public class LinkStrand implements IDnaStrand {
 	}
 
 	/**
-	 * @return the reverse version of the dna strand
+	 * @return the dna strand with all the base pairs in backwards/reverse order
 	 */
 	@Override
 	public IDnaStrand reverse() {

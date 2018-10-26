@@ -1,9 +1,135 @@
-Your Name here
-Your NetID here
-Your Partner's name here (or erase)
-Your Partner's NetID here (or erase)
+Your Name Mylie Walker
+Your NetID mgw25
 
-Questions here will come from the assignment
-writeup. Be sure to copy paste questions and 
-your explanations before you push to GitHub and
-do that before uploading to Gradescope
+(1) Are the benchmark timings for StringStrand consistent with the explanation
+ below that the time to execute cutAndSplice is O(b^2S)? Note that the value of b
+ is half the number of calls to append since each cut (except the first) is modeled
+ by two calls of append in the method cutAndSplice -- see the code. This means that
+ b^2 will be constant in the benchmark, but S will vary.
+
+ dna length = 4,639,221
+ cutting at enzyme gaattc
+ -----
+ Class                 splicee          recomb    time appends
+ -----
+ StringStrand:	            256	      4,800,471	10.017	1290
+ StringStrand:	            512	      4,965,591	10.021	1290
+ StringStrand:	          1,024	      5,295,831	12.622	1290
+ StringStrand:	          2,048	      5,956,311	13.915	1290
+ StringStrand:	          4,096	      7,277,271	18.453	1290
+ StringStrand:	          8,192	      9,919,191	25.091	1290
+ StringStrand:	         16,384	     15,203,031	45.075	1290
+ StringStrand:	         32,768	     25,770,711	79.341	1290
+ StringStrand:	         65,536	     46,906,071	164.001	1290
+ StringStrand:	        131,072	     89,176,791	318.956	1290
+ StringStrand:	        262,144	    173,718,231	587.007	1290
+ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	 at java.util.Arrays.copyOf(Arrays.java:3332)
+	 at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)
+	 at java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:448)
+	 at java.lang.StringBuilder.append(StringBuilder.java:136)
+	 at StringStrand.append(StringStrand.java:70)
+	 at IDnaStrand.cutAndSplice(IDnaStrand.java:41)
+	 at DNABenchmark.strandSpliceBenchmark(DNABenchmark.java:67)
+	 at DNABenchmark.main(DNABenchmark.java:113)
+
+ The cutAndSplice method in StringStrand appends an enzyme to the strand by creating a new string each time.
+ Therefore, if append is called n times, it runs with O(n^2) efficiency. Consequently, cutAndSplice executes
+ with O(b^2S) efficiency. These benchmark timings are consistent with O(b^2S) efficiency. As the size of the
+ strand increases, the runtime increases significantly. The first splicee only contains 256 characters, and 
+ takes 10.017 seconds to run. The runtime increases each time the size of the strand is increased. In the later
+ runs, it takes about 1.8 times as long to run double strand size. It also takes 58 times as long to run the 
+ last strand as it does to run the first. Given these results, the benchmark timings are consistent with O(b^2S)
+ efficiency for cutAndSplice.
+
+(2) Are the benchmark timings for StringBuilderStrand consistent with the explanation 
+ below that the time to execute cutAndSplice is O(bS)? Note that the value of b is 
+ half the number of calls to append since each cut (except the first) is modeled by two 
+ calls of append in the method cutAndSplice -- see the code. This means that b will be 
+ constant in the benchmark, but S will vary. 
+
+ dna length = 4,639,221
+ cutting at enzyme gaattc
+ -----
+ Class                 splicee          recomb    time appends
+ -----
+ StringBuilderStrand:	            256	      4,800,471	0.182	1290
+ StringBuilderStrand:	            512	      4,965,591	0.512	1290
+ StringBuilderStrand:	          1,024	      5,295,831	0.415	1290
+ StringBuilderStrand:	          2,048	      5,956,311	0.287	1290
+ StringBuilderStrand:	          4,096	      7,277,271	0.236	1290
+ StringBuilderStrand:	          8,192	      9,919,191	0.434	1290
+ StringBuilderStrand:	         16,384	     15,203,031	0.268	1290
+ StringBuilderStrand:	         32,768	     25,770,711	0.255	1290
+ StringBuilderStrand:	         65,536	     46,906,071	0.564	1290
+ StringBuilderStrand:	        131,072	     89,176,791	0.854	1290
+ StringBuilderStrand:	        262,144	    173,718,231	1.360	1290
+ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	 at java.util.Arrays.copyOf(Arrays.java:3332)
+	 at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)
+	 at java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:448)
+	 at java.lang.StringBuilder.append(StringBuilder.java:136)
+	 at StringBuilderStrand.append(StringBuilderStrand.java:70)
+	 at IDnaStrand.cutAndSplice(IDnaStrand.java:41)
+	 at DNABenchmark.strandSpliceBenchmark(DNABenchmark.java:67)
+	 at DNABenchmark.main(DNABenchmark.java:113)
+
+ The cutAndSplice method in StringBuilderStrand appends the enzyme by adding it to a preexisting StringBuilder object. 
+ Therefore, it has O(bS) efficiency. Since b is constant in the Benchmark method, runtime only varies based on the 
+ length of the splicee. The first run, which contained 256 (2^8) characters, had the shortest runtime (0.182 seconds). 
+ In general, as the size of the splicee increased, the runtime for StringBuilderStrand increases. There was slight 
+ variation in the middle, which may be due to garbage collection or other computer activity. Despite these small 
+ discrepancies, the last run, which contained 262,144 (2^18) characters took 10 times longer than the first run. 
+ Therefore, the timings are consistent with O(bS) efficiency.
+
+(3) Explain why the time for LinkStrand does not change much at all over all the runs in
+ the benchmark program. Explain why you think memory is exhausted at the specific strand
+ size you see in your timings -- as compared to exhaustion for String and StringBuilder.
+
+ dna length = 4,639,221
+ cutting at enzyme gaattc
+ -----
+ Class                 splicee          recomb    time appends
+ -----
+ LinkStrand:	            256	      4,800,471	0.103	1290
+ LinkStrand:	            512	      4,965,591	0.117	1290
+ LinkStrand:	          1,024	      5,295,831	0.120	1290
+ LinkStrand:	          2,048	      5,956,311	0.127	1290
+ LinkStrand:	          4,096	      7,277,271	0.177	1290
+ LinkStrand:	          8,192	      9,919,191	0.116	1290
+ LinkStrand:	         16,384	     15,203,031	0.130	1290
+ LinkStrand:	         32,768	     25,770,711	0.086	1290
+ LinkStrand:	         65,536	     46,906,071	0.090	1290
+ LinkStrand:	        131,072	     89,176,791	0.109	1290
+ LinkStrand:	        262,144	    173,718,231	0.128	1290
+ LinkStrand:	        524,288	    342,801,111	0.139	1290
+ LinkStrand:	      1,048,576	    680,966,871	0.111	1290
+ LinkStrand:	      2,097,152	  1,357,298,391	0.097	1290
+ LinkStrand:	      4,194,304	  2,709,961,431	0.107	1290
+ LinkStrand:	      8,388,608	  5,415,287,511	0.104	1290
+ LinkStrand:	     16,777,216	 10,825,939,671	0.094	1290
+ LinkStrand:	     33,554,432	 21,647,243,991	0.158	1290
+ LinkStrand:	     67,108,864	 43,289,852,631	0.123	1290
+ LinkStrand:	    134,217,728	 86,575,069,911	0.160	1290
+ LinkStrand:	    268,435,456	173,145,504,471	0.224	1290
+ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+ 	 at java.util.Arrays.copyOf(Arrays.java:3332)
+	 at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)
+	 at java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:448)
+	 at java.lang.StringBuilder.append(StringBuilder.java:136)
+	 at DNABenchmark.main(DNABenchmark.java:110)
+
+
+ Unlike the StringStrand and StringBuilderStrand charAt methods, the charAt method for LinkStrand has
+ O(1) efficiency when the index is one greater than the last time charAt was called. Therefore, the runtime does
+ not change significantly as the strand gets longer. In addition to being more efficient, LinkStrand also
+ uses significantly less memory. StringStrand and StringBuilderStrand both create a new copy of the splicee each 
+ time append is called. In the Benchmark test, the object is appended 1290 times. As a result, StringStrand and 
+ StringBuilderStrand store 1290 versions of the same splicee for each strand of DNA. In contrast, LinkStrand uses 
+ a LinkedList to store the individual enzymes as nodes. Rather than creating a new node each time append is called, 
+ it simply points to the preexisting one. Therefore, it only stores one copy of the enzyme, saving a significant 
+ amount of memory. As a result, it is able to process a strand that consists of 268,435,456 (2^28) characters, which 
+ is 1024 (2^10) times longer than 262,144 (2^18), the longest strand processed by StringStrand and StringBuilderStrand.
+ Additionally, it completes 21 runs instead of 11. 
+
+ why is memory exhausted
